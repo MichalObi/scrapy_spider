@@ -24,7 +24,7 @@ class FilmwebSpider(CrawlSpider):
     def parse(self, response):
         return scrapy.FormRequest.from_response(
             response,
-            formdata={'j_username': 'NeVrea', 'j_password': 'obix123', '_prm': 'true'},
+            formdata={'j_username': 'User', 'j_password': 'pass', '_prm': 'true'},
             callback=self.login
         )
 
@@ -37,7 +37,7 @@ class FilmwebSpider(CrawlSpider):
 
         if '/user/NeVrea' in response.body:
             self.logger.info('Login ok!')
-            return scrapy.Request(url='http://www.filmweb.pl/user/NeVrea/films',
+            return scrapy.Request(url='http://www.filmweb.pl/user/User/films',
             callback=self.movie_parse)
         else:
             self.logger.info('Login failed!')
